@@ -1,11 +1,11 @@
-#Backstory, Jesse is an upcoming senior and data science major at Yellow Brick Road State College (Kansas City Campus). He recently landed a one-year internship at Wicked Green Tech,
+-- Backstory, Jesse is an upcoming senior and data science major at Yellow Brick Road State College (Kansas City Campus). He recently landed a one-year internship at Wicked Green Tech,
 a public health startup, in the heart of Emerald City, where he will be working as a junior data analyst. Knowing that this is once-in-a-lifetime opportunity, Jesse, along with his
 parakeet "Munchkin" travels to the big city with a tattered leathr suitcase and a dream.
 
-#A full day has passed since Jesse's arrival to Emerald City. He decides to head over to the superstore, with a modest budget, to get some home essentials to make
+-- A full day has passed since Jesse's arrival to Emerald City. He decides to head over to the superstore, with a modest budget, to get some home essentials to make
 his 425 sq ft studio apartment more habitable.
 
-#This project utilizes the following Superstore data:
+-- This project utilizes the following Superstore data:
 
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
@@ -34,39 +34,45 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
-#For this project, I used SQL to query the Superstore database to get information about items sold at the store, their prices, and their ratings.
+-- For this project, I used SQL to query the Superstore database to get information about items sold at the store, their prices, and their ratings.
 
-#Use a SELECT statement to list only the Kitchen Supplies from most to least expensive.
+-- Use a SELECT statement to list only the Kitchen Supplies from most to least expensive.
+
 SELECT category, item_name, price
 FROM superstore
 WHERE category = 'Kitchen Supplies'
 ORDER BY price desc;
 
-#Determine the average rating of Furnishings.
+-- Determine the average rating of Furnishings.
+
 SELECT category, item_name, average_rating
 FROM superstore
 WHERE category = 'Furnishings'
 ORDER BY average_rating >=4.5;
 
-#Show a statistic about the item prices.
+-- Show a statistic about the item prices.
+
 SELECT avg(price)
 FROM superstore;
 
-#Show a statistic about the price for items in the category of "Kitchen Supplies". 
+-- Show a statistic about the price for items in the category of "Kitchen Supplies". 
+
 SELECT avg(price)
 FROM superstore
 WHERE category="Kitchen Supplies"
 
-#Determine the total number of Electronics that are available for to purchase.
+-- Determine the total number of Electronics that are available for to purchase.
+
 SELECT category, item_name, stock_quantity
 FROM superstore
 WHERE category = 'Electronics'
 ORDER BY stock_quantity >=true; 
 
-#Use a SELECT statement to verify all Appliances that cost more than 49.99.
+-- Use a SELECT statement to verify all Appliances that cost more than 49.99.
+
 SELECT category, item_name, price
 FROM superstore
 WHERE category = 'Appliances'
 ORDER BY price > 49.99 desc;
 
-#Conclusion, Jesses ends up purchasing the memory foam mattress, cotton bedding set, stainless steel cookware set, and the cutlery set
+-- Conclusion, Jesses ends up purchasing the memory foam mattress, cotton bedding set, stainless steel cookware set, and the cutlery set
