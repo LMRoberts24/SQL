@@ -75,4 +75,4 @@ FROM superstore
 WHERE category = 'Appliances'
 ORDER BY price > 49.99 desc;
 
--- Conclusion, Jesses ends up purchasing the memory foam mattress, cotton bedding set, stainless steel cookware set, and the cutlery set
+-- Conclusion, Jesse ends up purchasing the memory foam mattress, cotton bedding set, stainless steel cookware set, and the cutlery set
