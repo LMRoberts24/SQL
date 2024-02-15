@@ -94,16 +94,15 @@ WHERE industry = "Healthcare"
 -- Jesse then gets curious about the longevity of employees in each company. Jesse feels that the longer an employee stays with a
 company then the better the company in terms of overall benefits.
 
-SELECT company_name, avg_employee_tenure
-CASE WHEN avg_employee_tenure >= 7.0 THEN "Great"
-WHEN avg_employee_tenure >= 6.5 THEN "Good"
-WHEN avg_employee_tenure >= 6.0 THEN "Fair"
+SELECT company_name,
+CASE 
+WHEN avg_employee_tenure >=7 THEN "Great"
+WHEN avg_employee_tenure >=6.5 THEN "Good"
+WHEN avg_employee_tenure >=6 THEN "Fair"
 ELSE "Poor"
 END AS tenure_rating
 FROM fortune_companies
-WHERE industry = "Healthcare"
-AND employees <= 3600
-ORDER BY employees desc;
+WHERE industry = "Healthcare";
 
 -- Last, Jesse wants to compare the maternity (parental) leave between the healthcare companies
 
