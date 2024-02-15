@@ -55,3 +55,64 @@ VALUES
     ('Company II', 'Telecommunications', 110.5, 2000, 1, 21, 12, 4.9),
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
+
+
+-- Jesse has completed his internship at Wicked Green Tech. He is more confident in his abilities to clean mounds of data
+and draw conclusions to influence a company's business decisions. The time has come for Jesse to look for a permanent 
+position as a full-time analyst. 
+
+---- OBJECTIVES: 
+-- Group the data in a new way using a CASE statement.
+-- Use a HAVING clause to determine something interesting about the data per category.
+-- Use logical operators like AND or OR to filter the data in an interesting way
+-- Use an aggregate function like AVG, SUM, COUNT, MAX, and/or MIN to return summary statistics about the data.
+
+-- To start, Jesse accesses a database with the most recent listings of Fortune 500 companies, comparing revenue, employees
+, healthcare benefits, paid time off, parental leave, and avarage employee tenure. To make sense of this, Jesse sorts the 
+results in descending order by total number of employees. 
+
+SELECT *
+FROM fortune_companies
+ORDER BY employees desc
+
+-- Having worked for a small public health startup, Jesse wants to limit his options to only companies in the healthcare industry
+that also are NOT considered a major conglomerate (i.e. have no more than 3600 employees)
+
+SELECT *
+FROM fortune_companies
+WHERE industry = "Healthcare"
+AND employees <= 3600
+ORDER BY employees desc;
+
+-- One thing Jesse values most is his mental health so the ability to take personal sabbiticals is importmant. Thus, Jesse wants to 
+consider the average number of paid time off between the healthcare companies
+
+SELECT AVG (paid_time_off_days)
+FROM fortune_companies
+WHERE industry = "Healthcare"
+
+-- Jesse then gets curious about the longevity of employees in each company. Jesse feels that the longer an employee stays with a
+company then the better the company in terms of overall benefits.
+
+SELECT company_name, avg_employee_tenure
+CASE WHEN avg_employee_tenure >= 7.0 THEN "Great"
+WHEN avg_employee_tenure >= 6.5 THEN "Good"
+WHEN avg_employee_tenure >= 6.0 THEN "Fair"
+ELSE "Poor"
+END AS tenure_rating
+FROM fortune_companies
+WHERE industry = "Healthcare"
+AND employees <= 3600
+ORDER BY employees desc;
+
+-- Last, Jesse wants to compare the maternity (parental) leave between the healthcare companies
+
+SELECT *, SUM(maternity_leave_weeks) AS parental_leave_wks
+FROM fortune_companies
+WHERE Industry = "Healthcare"
+GROUP BY company_name
+HAVING SUM(maternity_leave_weeks) >= 9
+ORDER BY avg_employee_tenure desc
+
+-- Conclusion: After careful consideration, Jesse plans to pursue employment at "Company K". While it doesn't have the most 
+weeks of paid parental leave, Company K does have the highest employee tenure rating and a healthy paid time off package.
