@@ -61,7 +61,7 @@ SELECT avg(price)
 FROM superstore
 WHERE category="Kitchen Supplies"
 
--- Determine the total number of Electronics that are available for to purchase.
+-- Determine the total number of Electronics that are available for purchase.
 
 SELECT category, item_name, stock_quantity
 FROM superstore
